@@ -2,10 +2,11 @@ from flask import Blueprint, render_template, request
 # from app.code.code import checkMessage
 # from code.code import 
 import openai
+openai.api_key = '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'
+  
 
 def checkMessage(text):
   openai.api_key = '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'
-  
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -26,7 +27,7 @@ def show():
 @view.route('/check', methods=['POST'])
 def checktweet():
     print("a")
-    data = request.form.get('key')
-    isOK = checkMessage(data)
-    
+    # data = request.form.get('key')
+    # isOK = checkMessage(data)
+    isOK = "a"
     return isOK
