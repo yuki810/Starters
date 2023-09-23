@@ -10,7 +10,7 @@ body {
 }
 
 /* 左：メニュー */
-#tablecontents{
+#menuzone{
     width: 15%;
     border-right: solid 2px #eff3f4;
     box-sizing: border-box;
@@ -19,19 +19,21 @@ body {
 .tablecontent{
     float:left;
     width:100%;
-    float: left;
+    display:flex;
 }
 
 .menu-icon{
     width:20px;
     height:20px;
+    margin: 16px 5px 16px 16px;
 }
 .menu-title{
     width:50%;
+    margin: 16px;
 }
 
 /* 中央：タイムライン */
-#timeline{
+#postzone{
     width: 60%;
 }
 
@@ -84,7 +86,7 @@ body {
 }
 
 /* 右：トレンド欄 */
-#trend{
+#trendzone{
     width: 25%;
     border-left: solid 2px #eff3f4;
     box-sizing: border-box;
@@ -101,6 +103,10 @@ body {
     padding: 10px;
     margin: 0 auto;
     text-align: left;
+}
+
+#trends div p, h3{
+    margin :0;
 }
 
 /* アラート用 */
