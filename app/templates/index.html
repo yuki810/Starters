@@ -28,7 +28,7 @@
                 <img id="user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
-                <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください">{{ session.get('saved_text', '') }}</textarea>
+                <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="投稿内容を入力してください">{{ session.get('saved_text', '') }}</textarea>
                 <div id="button">
                     <!-- 送信ボタン -->
                     <input id="postbutton" type="submit" value="ポスト">
@@ -37,8 +37,13 @@
         </div>
         <div id="timeline">
             {% if isCompleted == True  %}
+            <div class="userpost">
 
             {% endif %}
+            <div class="userpost">
+                <img id="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <p class="user-post-text"></p>
+            </div>
 
         </div>
     </div>

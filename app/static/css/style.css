@@ -85,6 +85,10 @@ body {
     cursor: pointer;
 }
 
+.userpost{
+    border-bottom: solid 2px #eff3f4;
+}
+
 /* 右：トレンド欄 */
 #trendzone{
     width: 25%;
