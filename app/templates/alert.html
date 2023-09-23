@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="static/css/style.css" type="text/css">
 </head>
 <body>
-    <div id="tablecontents" class="backgrounditem">
+    <div id="menuzone" class="backgrounditem">
         <div class="tablecontent">
             <img id="home-icon" class="menu-icon" src="static/icon/home.png" alt="homeicon">
             <p class="menu-title">ホーム</p>
@@ -19,44 +19,70 @@
             <img id="bell-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
             <p class="menu-title">通知</p>
         </div>
+        <div class="tablecontent">
+            <img id="message-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <p class="menu-title">メッセージ</p>
+        </div>
+        <div class="tablecontent">
+            <img id="list-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <p class="menu-title">リスト</p>
+        </div>
     </div>
-    <div id="timeline" class="backgrounditem">
-        <h1 id="timelinetitle">ホーム</h1>
+    <div id="postzone" class="backgrounditem">
+        <h2 id="timelinetitle">ホーム</h2>
         <div id="post">
             <form action="/check" method="POST">
                 <!-- ユーザーアイコン -->
                 <img id="user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
-                <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
+                <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="いまどうしてる？">{{inputText}}</textarea>
                 <div id="button">
                     <!-- 送信ボタン -->
-                    <input id="postbutton" type="submit" value="ポスト">
+                    <input id="postbutton" type="submit" value="ポストする">
                 </div>
             </form>
         </div>
-        <div id="post">
+        <div id="timeline">
+            {% if isCompleted == True  %}
+            <div class="userpost">
+                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <p class="user-post-text">{{postText}}</p>
+            </div>
 
+            {% endif %}
+            <div class="userpost">
+                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <p class="user-post-text">今日もいい天気ですね</p>
+            </div>
+            <div class="userpost">
+                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <p class="user-post-text">お腹すいた</p>
+            </div>
+            <div class="userpost">
+                <img class="user-post-icon" src="static/icon/natsume.png" alt="ユーザーアイコン">
+                <p class="user-post-text">月が綺麗ですね</p>
+            </div>
         </div>
     </div>
 
-    <div id="trend" class="backgrounditem">
+    <div id="trendzone" class="backgrounditem">
         <div id="trendlist">
-            <h1 id="trendtitle">今どうしてる？</h1>
+            <h2 id="trendtitle">いまどうしてる？</h2>
             <div id="trends">
-                <div>
+                <div class="trend">
                     <p>エンターテインメントのトレンド</p>
-                    <h2>東京ゲームショウ2023</h2>
+                    <h4>東京ゲームショウ2023</h4>
                     <p>3,150posts</p>
                 </div>
-                <div>
+                <div class="trend">
                     <p>テクノロジーのトレンド</p>
-                    <h2>Softbank Tech Night Hackathon</h2>
+                    <h4>Softbank Tech Night Hackathon</h4>
                     <p>3,150posts</p>
                 </div>
-                <div>
+                <div class="trend">
                     <p>テクノロジーのトレンド</p>
-                    <h2>Softbank Tech Night Hackathon</h2>
+                    <h4>Softbank Tech Night Hackathon</h4>
                     <p>3,150posts</p>
                 </div>
             </div>
@@ -65,44 +91,24 @@
 
     <!-- 警告メッセージ用 -->
     <div class="overlay" id="overlay">
+        <form action="/disagree" method="POST">
+            <input id="alertpostbutton" type="submit">
+            <!-- ばつボタンにする -->
+        </form>
         <div class="overlay" id="alert">
             <p>{{alert}}</p>
         </div>
         <div class="overlay" id="advice">
-            <p>サービス名からの提案</p>
-            <p>「あいつとは相性が合わないんだけど、それが逆に面白い関係なんだよね」</p>
+            <p>{{alert}}</p>
+            <form action="/agree" method="POST">
+                <input id="alertpostbutton" type="submit" value="文章を変更してポストする">
+            </form>
         </div>
     </div>
 </body>
 </html>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#postbutton").click(function () {
-            console.log("click")
-            $.ajax({
-                url: "/check",
-                type: "POST",
-                data: { key: "value" },
-                success: function (data) {
-                    // バックエンドからの応答を処理するコード
-                    console.log(data)
-                    if (data) {
-                        // 返り値がTrueの場合、半透明の背景を表示
-                        document.getElementById('overlay').style.display = 'block';
-
-                    } else {
-                        // 返り値がFalseの場合、半透明の背景を非表示
-                        document.getElementById('overlay').style.display = 'none';
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Request error: " + error);
-                },
-            });
-        });
-    });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    document.getElementsByClass('overlay').style.display = 'none';
 </script>
-
 

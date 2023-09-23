@@ -7,7 +7,7 @@ isCompleted = False
 
 
 def checkMessage(text):
-  openai.api_key = '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'
+  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -21,7 +21,7 @@ def checkMessage(text):
   return a
 
 def alertMessage(text):
-  openai.api_key = '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'
+  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -49,19 +49,19 @@ def checktweet():
     print(request)
     text = request.form['text_area']
     print(text)
-    # isOK = checkMessage(text)
-
-    isOK = ""
+    isOK = checkMessage(text)
     print(text)
     print(isOK)
+    variable_value = session.get('isCompleted', False)
+    postText = session.get('postText', "")
     
     if isOK == "TRUE":
-    #    a = alertMessage(text)
-       a = "ダメでちゅよ"
-       print(a)
-       return render_template('alert.html', alert = a)
+      a = alertMessage(text)
+      #  a = "それで本当にいいのかな？？"
+      print(a)
+      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text)
     else:
        isCompleted = True
        session['isCompleted'] = True
        session["postText"] = text
-       return redirect("/") 
+       return redirect("/")

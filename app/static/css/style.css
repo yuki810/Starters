@@ -150,7 +150,7 @@ body {
 }
 
 #overlay {
-    background-color: rgba(0, 0, 0, 0.7); /* 半透明の黒色背景 */
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明の黒色背景 */
 }
 
 #alert {
