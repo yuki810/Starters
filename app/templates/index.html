@@ -1,9 +1,57 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>App Engine Sample</title>
+    <meta charset=”utf-8″>
+    <title>SNS投稿</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <h2>App Engine </h2>
-    Hello [[ name ]] !!
+    <div id="tablecontents" class="backgrounditem">
+        <p>ホーム</p>
+        <p>話題を検索</p>
+        <p>通知</p>
+    </div>
+    <div id="timeline" class="backgrounditem">
+        <h1>ホーム</h1>
+        <div id="post">
+            <form method="POST" action="/post">
+                <!-- ユーザーアイコン -->
+                <img id="user-icon" src="IMG_2517.JPG" alt="ユーザーアイコン">
+
+                <!-- 投稿内容 -->
+                <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
+                <div id="button">
+                    <!-- 送信ボタン -->
+                    <input id="postbutton" type="submit" value="ポスト">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="trend" class="backgrounditem">
+        <h1>今どうしてる？</h1>
+        <p>東京ゲームショウ2023</p>
+        <p>Softbank Tech Night Hackathon</p>
+    </div>
+
+    {% if judge==True %}
+        <div class="overlay" id="overlay"></div>
+    {% endif %}
+
 </body>
 </html>
+
+<script>
+    // Python関数の返り値に基づいてUIを変更するためのJavaScript
+    function updateUI(isTrue) {
+        if (isTrue) {
+            // 返り値がTrueの場合、半透明の背景を表示
+            document.getElementById('overlay').style.display = 'block';
+        } else {
+            // 返り値がFalseの場合、半透明の背景を非表示
+            document.getElementById('overlay').style.display = 'none';
+        }
+    }
+
+    updateUI({{isTrue}});
+</script>
