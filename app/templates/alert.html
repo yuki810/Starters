@@ -3,20 +3,20 @@
 <head>
     <meta charset=”utf-8″>
     <title>SNS投稿</title>
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
 </head>
 <body>
     <div id="tablecontents" class="backgrounditem">
         <div class="tablecontent">
-            <img id="home-icon" class="menu-icon" src="templates/icon/home.png" alt="homeicon">
+            <img id="home-icon" class="menu-icon" src="static/icon/home.png" alt="homeicon">
             <p class="menu-title">ホーム</p>
         </div>
         <div class="tablecontent">
-            <img id="search-icon" class="menu-icon" src="./icon/search.png" alt="searchicon">
+            <img id="search-icon" class="menu-icon" src="static/icon/search.png" alt="searchicon">
             <p class="menu-title">話題を検索</p>
         </div>
         <div class="tablecontent">
-            <img id="bell-icon" class="menu-icon" src="./icon/bell.png" alt="bellicon">
+            <img id="bell-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
             <p class="menu-title">通知</p>
         </div>
     </div>
@@ -25,7 +25,7 @@
         <div id="post">
             <form action="/check" method="POST">
                 <!-- ユーザーアイコン -->
-                <img id="user-icon" src="./icon/useicon.JPG" alt="ユーザーアイコン">
+                <img id="user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
                 <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
@@ -66,7 +66,7 @@
     <!-- 警告メッセージ用 -->
     <div class="overlay" id="overlay">
         <div class="overlay" id="alert">
-            <p>別の言葉で表現してみよう</p>
+            <p>{{alert}}</p>
         </div>
         <div class="overlay" id="advice">
             <p>サービス名からの提案</p>
