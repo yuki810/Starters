@@ -80,6 +80,7 @@ body {
     font-size: 10pt;
     border-radius: 9999px;
     border: none;
+    cursor: pointer;
 }
 
 /* 右：トレンド欄 */
