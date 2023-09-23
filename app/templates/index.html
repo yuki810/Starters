@@ -20,11 +20,11 @@
             <p class="menu-title">通知</p>
         </div>
         <div class="tablecontent">
-            <img id="message-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <img id="message-icon" class="menu-icon" src="static/icon/mail.png" alt="bellicon">
             <p class="menu-title">メッセージ</p>
         </div>
         <div class="tablecontent">
-            <img id="list-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <img id="list-icon" class="menu-icon" src="static/icon/list.png" alt="bellicon">
             <p class="menu-title">リスト</p>
         </div>
     </div>
@@ -88,34 +88,5 @@
             </div>
         </div>
     </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#postbutton").click(function () {
-            console.log("click")
-            $.ajax({
-                url: "/check",
-                type: "POST",
-                data: { key: "value" },
-                success: function (data) {
-                    // バックエンドからの応答を処理するコード
-                    console.log(data)
-                    if (data) {
-                        // 返り値がTrueの場合、半透明の背景を表示
-                        document.getElementById('overlay').style.display = 'block';
-
-                    } else {
-                        // 返り値がFalseの場合、半透明の背景を非表示
-                        document.getElementById('overlay').style.display = 'none';
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Request error: " + error);
-                },
-            });
-        });
-    });
-</script>
-
-
+</body>
+</html>
