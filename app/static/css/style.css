@@ -109,6 +109,10 @@ body {
     margin :0;
 }
 
+.trend{
+    margin: 16px 0 16px 0;
+}
+
 /* アラート用 */
 .overlay {
     position: fixed;
