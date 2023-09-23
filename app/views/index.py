@@ -5,7 +5,6 @@ import openai
 openai.api_key = ''
 isCompleted = False
 
-  
 
 def checkMessage(text):
   openai.api_key = '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'
@@ -40,7 +39,9 @@ def alertMessage(text):
 view = Blueprint('index', __name__, url_prefix='/')
 @view.route('/', methods=['GET'])
 def show():
-    return render_template('index.html', name='default', isCompleted=isCompleted, postText="Hello")
+    variable_value = session.get('isCompleted', False)
+    postText = session.get('postText', "")
+    return render_template('index.html', name='default', postText=postText, isCompleted=variable_value)
 
 @view.route('/check', methods=['POST'])
 def checktweet():
@@ -54,7 +55,6 @@ def checktweet():
     print(text)
     print(isOK)
     
-
     if isOK == "TRUE":
     #    a = alertMessage(text)
        a = "ダメでちゅよ"
@@ -62,4 +62,6 @@ def checktweet():
        return render_template('alert.html', alert = a)
     else:
        isCompleted = True
+       session['isCompleted'] = True
+       session["postText"] = text
        return redirect("/") 
