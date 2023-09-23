@@ -22,20 +22,24 @@
     </div>
     <div id="timeline" class="backgrounditem">
         <h1 id="timelinetitle">ホーム</h1>
-        <div id="post">
-            <form action="/check" method="POST">
+        <!-- <div id="post">
+            <form action="/check" method="POST"> -->
                 <!-- ユーザーアイコン -->
-                <img id="user-icon" src="./icon/useicon.JPG" alt="ユーザーアイコン">
+                <!-- <img id="user-icon" src="./icon/useicon.JPG" alt="ユーザーアイコン"> -->
 
                 <!-- 投稿内容 -->
-                <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
-                <div id="button">
+                <!-- <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
+                <div id="button"> -->
                     <!-- 送信ボタン -->
-                    <input id="postbutton" type="submit" value="ポスト">
+                    <!-- <input id="postbutton" type="submit" value="ポスト">
                 </div>
             </form>
-        </div>
-        <div id="post">
+        </div> -->
+        <form method="POST" action="/check">
+            <textarea name="text_area">{{ session.get("saved_text", "")}}</textarea>
+            <input type="submit" value="save text">
+        </form>
+        <div id="">
 
         </div>
     </div>
