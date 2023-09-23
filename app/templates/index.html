@@ -38,13 +38,15 @@
         <div id="timeline">
             {% if isCompleted == True  %}
             <div class="userpost">
+                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <p class="user-post-text">{{ postText}}</p>
+            </div>
 
             {% endif %}
             <div class="userpost">
-                <img id="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
                 <p class="user-post-text"></p>
             </div>
-
         </div>
     </div>
 
