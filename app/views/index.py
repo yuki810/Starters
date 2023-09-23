@@ -3,6 +3,8 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 # from code.code import 
 import openai
 openai.api_key = ''
+isCompleted = False
+
   
 
 def checkMessage(text):
@@ -38,19 +40,26 @@ def alertMessage(text):
 view = Blueprint('index', __name__, url_prefix='/')
 @view.route('/', methods=['GET'])
 def show():
-    return render_template('index.html', name='default', isCompleted=True, postText="Hello")
+    return render_template('index.html', name='default', isCompleted=isCompleted, postText="Hello")
 
 @view.route('/check', methods=['POST'])
 def checktweet():
+    print("a")
+    print(request)
     text = request.form['text_area']
-    isOK = checkMessage(text)
+    print(text)
+    # isOK = checkMessage(text)
 
+    isOK = ""
     print(text)
     print(isOK)
+    
 
     if isOK == "TRUE":
-       a = alertMessage(text)
+    #    a = alertMessage(text)
+       a = "ダメでちゅよ"
        print(a)
        return render_template('alert.html', alert = a)
     else:
-       return redirect(url_for('/')) 
+       isCompleted = True
+       return redirect("/") 
