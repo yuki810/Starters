@@ -1,3 +1,5 @@
+import openai
+
 def checkMessage(text):
   response = openai.ChatCompletion.create(
     model="gpt-4",
