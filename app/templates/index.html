@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
 <body>
-    <div id="tablecontents" class="backgrounditem">
+    <div id="menuzone" class="backgrounditem">
         <div class="tablecontent">
             <img id="home-icon" class="menu-icon" src="./icon/home.png" alt="homeicon">
             <p class="menu-title">ホーム</p>
@@ -20,47 +20,46 @@
             <p class="menu-title">通知</p>
         </div>
     </div>
-    <div id="timeline" class="backgrounditem">
-        <h1 id="timelinetitle">ホーム</h1>
-        <!-- <div id="post">
-            <form action="/check" method="POST"> -->
+    <div id="postzone" class="backgrounditem">
+        <h2 id="timelinetitle">ホーム</h2>
+        <div id="post">
+            <form action="/check" method="POST">
                 <!-- ユーザーアイコン -->
-                <!-- <img id="user-icon" src="./icon/useicon.JPG" alt="ユーザーアイコン"> -->
+                <img id="user-icon" src="./icon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
-                <!-- <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
-                <div id="button"> -->
+                <textarea id="postinput" name="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください"></textarea>
+                <div id="button">
                     <!-- 送信ボタン -->
-                    <!-- <input id="postbutton" type="submit" value="ポスト">
+                    <input id="postbutton" type="submit" value="ポスト">
                 </div>
             </form>
-        </div> -->
-        <form method="POST" action="/check">
-            <textarea name="text_area">{{ session.get("saved_text", "")}}</textarea>
-            <input type="submit" value="save text">
-        </form>
-        <div id="">
+        </div>
+        <div id="timeline">
+            {% if isCompleted == True  %}
+
+            {% endif %}
 
         </div>
     </div>
 
-    <div id="trend" class="backgrounditem">
+    <div id="trendzone" class="backgrounditem">
         <div id="trendlist">
-            <h1 id="trendtitle">今どうしてる？</h1>
+            <h2 id="trendtitle">今どうしてる？</h2>
             <div id="trends">
-                <div>
+                <div class="trend">
                     <p>エンターテインメントのトレンド</p>
-                    <h2>東京ゲームショウ2023</h2>
+                    <h3>東京ゲームショウ2023</h3>
                     <p>3,150posts</p>
                 </div>
-                <div>
+                <div class="trend">
                     <p>テクノロジーのトレンド</p>
-                    <h2>Softbank Tech Night Hackathon</h2>
+                    <h3>Softbank Tech Night Hackathon</h3>
                     <p>3,150posts</p>
                 </div>
-                <div>
+                <div class="trend">
                     <p>テクノロジーのトレンド</p>
-                    <h2>Softbank Tech Night Hackathon</h2>
+                    <h3>Softbank Tech Night Hackathon</h3>
                     <p>3,150posts</p>
                 </div>
             </div>

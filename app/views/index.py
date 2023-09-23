@@ -22,7 +22,7 @@ def checkMessage(text):
 view = Blueprint('index', __name__, url_prefix='/')
 @view.route('/', methods=['GET'])
 def show():
-    return render_template('index.html', name='default')
+    return render_template('index.html', name='default', isCompleted=True, postText="Hello")
 
 @view.route('/check', methods=['POST'])
 def checktweet():
