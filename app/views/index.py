@@ -3,6 +3,8 @@ from codes import code1
 # from app.code.code import checkMessage
 # from code.code import 
 import openai
+import random
+
 openai.api_key = ''
 isCompleted = False
 
@@ -72,6 +74,8 @@ def checktweet():
     session["saved_text"] = text
     
     if isOK == "TRUE":
+      number = random.randrange(3)+1
+      link = f"static/person/ikemen{number}.jpg"
       # a = alertMessage(text)
       a = code1.study_main(text)
       recommend = recommendMessage(text)
@@ -80,17 +84,19 @@ def checktweet():
       session['recommend'] = recommend
       print(recommend)
       #  a = "それで本当にいいのかな？？"
-      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend)
+      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend, link=link)
     else:
        isCompleted = True
        session['isCompleted'] = True
        session["postText"] = text
+       session["saved_text"] = ""
        return redirect("/")
-    
+  
 @view.route('/agree', methods=['POST'])
 def agree():
     session['isCompleted'] = True
     session["postText"] = session.get('recommend', "")
+    session["saved_text"] = ""
     return redirect("/")
     
    
