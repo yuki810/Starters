@@ -7,7 +7,7 @@ isCompleted = False
 
 
 def checkMessage(text):
-  openai.api_key = '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'
+  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -21,7 +21,7 @@ def checkMessage(text):
   return a
 
 def alertMessage(text):
-  openai.api_key = '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'
+  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -34,6 +34,22 @@ def alertMessage(text):
 
   a = response.choices[0].message['content'].strip()
   return a
+
+def recommendMessage(text):
+  openai.api_key = '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'
+  response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+          {"role": "system", "content": "以下のコメントを、優しく誰も傷つけない言い方に変えて"},
+          {"role": "user", "content": "その時に返す言葉は30文字以内にしてほしい"},
+          {"role": "user", "content": text},
+      ],
+    temperature=0.1
+  )
+
+  a = response.choices[0].message['content'].strip()
+  return a
+   
 
 
 view = Blueprint('index', __name__, url_prefix='/')
@@ -57,11 +73,26 @@ def checktweet():
     
     if isOK == "TRUE":
       a = alertMessage(text)
+      recomend = recommendMessage(text)
+      session['recommend'] = recomend
       #  a = "それで本当にいいのかな？？"
-      print(a)
-      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text)
+      
+      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recomend = recomend)
     else:
        isCompleted = True
        session['isCompleted'] = True
        session["postText"] = text
        return redirect("/")
+    
+@view.route('/agree', methods=['POST'])
+def agree():
+    session['isCompleted'] = True
+    session["postText"] = session.get('recommend', "")
+    return redirect("/")
+    
+   
+@view.route('/disagree', methods=['POST'])
+def disagree():
+    session['isCompleted'] = False
+    session["postText"] = ""
+    return redirect("/")
