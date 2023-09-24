@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
+from codes import code1
 # from app.code.code import checkMessage
 # from code.code import 
 import openai
@@ -71,7 +72,8 @@ def checktweet():
     session["saved_text"] = text
     
     if isOK == "TRUE":
-      a = alertMessage(text)
+      # a = alertMessage(text)
+      a = code1.study_main(text)
       recommend = recommendMessage(text)
     #   recommend = "大好き"
     #   a = "そんな言い方良くないよ"
