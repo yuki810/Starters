@@ -20,11 +20,11 @@
             <p class="menu-title">通知</p>
         </div>
         <div class="tablecontent">
-            <img id="message-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <img id="message-icon" class="menu-icon" src="static/icon/mail.png" alt="bellicon">
             <p class="menu-title">メッセージ</p>
         </div>
         <div class="tablecontent">
-            <img id="list-icon" class="menu-icon" src="static/icon/bell.png" alt="bellicon">
+            <img id="list-icon" class="menu-icon" src="static/icon/list.png" alt="bellicon">
             <p class="menu-title">リスト</p>
         </div>
     </div>
@@ -33,12 +33,20 @@
         <div id="post">
             <form action="/check" method="POST">
                 <!-- ユーザーアイコン -->
-                <img id="user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <img id="user-icon" src="static/usericon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
-                <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="いまどうしてる？">{{inputText}}</textarea>
+                <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="いまどうしてる？">{{ session.get('saved_text', '') }}</textarea>
+                
+                <!-- ポストアイコン -->
+                <div id="post-icon">
+                    <img class="posticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="posticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="posticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
+                
+                <!-- 送信ボタン -->
                 <div id="button">
-                    <!-- 送信ボタン -->
                     <input id="postbutton" type="submit" value="ポストする">
                 </div>
             </form>
@@ -46,22 +54,50 @@
         <div id="timeline">
             {% if isCompleted == True  %}
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">{{postText}}</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/usericon/useicon.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">{{postText}}</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
 
             {% endif %}
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">今日もいい天気ですね</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/usericon/useicon2.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">今日もいい天気ですね</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">お腹すいた</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/usericon/useicon1.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">お腹すいた</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/natsume.png" alt="ユーザーアイコン">
-                <p class="user-post-text">月が綺麗ですね</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/usericon/natsume.png" alt="ユーザーアイコン">
+                    <p class="post-user-text">月が綺麗ですね</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
         </div>
     </div>
@@ -71,8 +107,8 @@
             <h2 id="trendtitle">いまどうしてる？</h2>
             <div id="trends">
                 <div class="trend">
-                    <p>エンターテインメントのトレンド</p>
-                    <h4>東京ゲームショウ2023</h4>
+                    <p>日本のトレンド</p>
+                    <h4>Softbank World</h4>
                     <p>3,150posts</p>
                 </div>
                 <div class="trend">
@@ -81,9 +117,9 @@
                     <p>3,150posts</p>
                 </div>
                 <div class="trend">
-                    <p>テクノロジーのトレンド</p>
-                    <h4>Softbank Tech Night Hackathon</h4>
-                    <p>3,150posts</p>
+                    <p>生き物のトレンド</p>
+                    <h4>お父さん</h4>
+                    <p>1,111posts</p>
                 </div>
             </div>
         </div>
@@ -91,26 +127,30 @@
 
     <!-- 警告メッセージ用 -->
     <div class="overlay" id="overlay">
+        
         <div class = "overlay_message" id = "overlay_message">
             <audio autoplay src="static/music/piano.mp3"></audio>
             <div class="overlay" id="alert">
                 <p>{{alert}}</p>
             </div>
             <div class="overlay" id="advice">
-                <p>こんな言い方した方がいいんじゃない？？：</p>
-                <p>『{{recommend}}』</p>
+                <p class="narration">こんな言い方はどうかな？：</p>
+                <p id="recommend">『{{recommend}}』</p>
                 <br>
-                <p>あなたはどうする？？</p>
+                <br>
+                <p class="narration">あなたはどうする？？</p>
                 <form action="/agree" method="POST">
-                    <input id="alertpostbutton" type="submit" value="▶︎イケメンに従って投稿する" class="alertbutton">
+                    <input class="postbutton" id="alertpostbutton" type="submit" value="▶︎ イケメンに従って変更した内容を、ポストする" class="alertbutton">
                 </form>
                 <form action="/disagree" method="POST">
-                    <input id="alertpostbutton" type="submit" value="▶︎イケメンになんて靡かないんだから！" class="alertbutton">
+                    <input class="postbutton" id="undobutton" type="submit" value="▶︎ イケメンになんて、靡かないんだから！" class="alertbutton">
                 </form>
             </div>
         </div>
-        <img class = "ikemen" src="static/icon/ikemen1.jpg" alt="ユーザーアイコン">
+        <img class = "ikemen" src="static/person/ikemen1.jpg" alt="ユーザーアイコン">
     </div>
+
+
 </body>
 </html>
 
