@@ -153,14 +153,33 @@ body {
     background-color: rgba(0, 0, 0, 0.8); /* 半透明の黒色背景 */
 }
 
+.overlay_message{
+    float: left; /* 右寄せにする */
+    width: 60%; /* 幅を60%に設定 */
+}
+
 #alert {
-    text-align: center;
+    text-align: left;
+    padding-left: 20vw;
     color: #d23347;
     font-size: 48px;
 }
 
 #advice {
+    text-align: left;
     padding: 20vw;
     color: #cccccc;
     font-size: 24px;
+}
+
+.ikemen {
+    float: right; /* 右寄せにする */
+    width: 40%; /* 幅を40%に設定 */
+    padding-right: 2vw;
+}
+
+.alertbutton {
+    color: #000;
+    font-size: 18px;
+    background-color: rgba(256, 256, 256); /* 半透明の黒色背景 */
 }

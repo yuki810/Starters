@@ -91,19 +91,25 @@
 
     <!-- 警告メッセージ用 -->
     <div class="overlay" id="overlay">
-        <form action="/disagree" method="POST">
-            <input id="alertpostbutton" type="submit">
-            <!-- ばつボタンにする -->
-        </form>
-        <div class="overlay" id="alert">
-            <p>{{alert}}</p>
+        <div class = "overlay_message" id = "overlay_message">
+            <audio autoplay src="static/music/piano.mp3"></audio>
+            <div class="overlay" id="alert">
+                <p>{{alert}}</p>
+            </div>
+            <div class="overlay" id="advice">
+                <p>こんな言い方した方がいいんじゃない？？：</p>
+                <p>『{{recommend}}』</p>
+                <br>
+                <p>あなたはどうする？？</p>
+                <form action="/agree" method="POST">
+                    <input id="alertpostbutton" type="submit" value="▶︎イケメンに従って投稿する" class="alertbutton">
+                </form>
+                <form action="/disagree" method="POST">
+                    <input id="alertpostbutton" type="submit" value="▶︎イケメンになんて靡かないんだから！" class="alertbutton">
+                </form>
+            </div>
         </div>
-        <div class="overlay" id="advice">
-            <p>{{alert}}</p>
-            <form action="/agree" method="POST">
-                <input id="alertpostbutton" type="submit" value="文章を変更してポストする">
-            </form>
-        </div>
+        <img class = "ikemen" src="static/icon/ikemen1.jpg" alt="ユーザーアイコン">
     </div>
 </body>
 </html>
