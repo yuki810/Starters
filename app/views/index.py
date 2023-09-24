@@ -5,9 +5,11 @@ import openai
 openai.api_key = ''
 isCompleted = False
 
+with open("app/static/apikey.txt") as f:
+   openai.api_key = f.read()
+
 
 def checkMessage(text):
-  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -21,7 +23,6 @@ def checkMessage(text):
   return a
 
 def alertMessage(text):
-  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -36,7 +37,6 @@ def alertMessage(text):
   return a
 
 def recommendMessage(text):
-  openai.api_key = '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'
   response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
@@ -61,23 +61,25 @@ def show():
 
 @view.route('/check', methods=['POST'])
 def checktweet():
-    print("a")
-    print(request)
     text = request.form['text_area']
-    print(text)
     isOK = checkMessage(text)
+    # isOK = "TRUE"
     print(text)
     print(isOK)
     variable_value = session.get('isCompleted', False)
     postText = session.get('postText', "")
+    session["saved_text"] = text
     
     if isOK == "TRUE":
       a = alertMessage(text)
-      recomend = recommendMessage(text)
-      session['recommend'] = recomend
+      recommend = recommendMessage(text)
+    #   recommend = "大好き"
+    #   a = "そんな言い方良くないよ"
+      session['recommend'] = recommend
+      print(recommend)
       #  a = "それで本当にいいのかな？？"
       
-      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recomend = recomend)
+      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend)
     else:
        isCompleted = True
        session['isCompleted'] = True
@@ -94,5 +96,5 @@ def agree():
 @view.route('/disagree', methods=['POST'])
 def disagree():
     session['isCompleted'] = False
-    session["postText"] = ""
+    session["saved_text"] = session.get('saved_text', "")
     return redirect("/")
