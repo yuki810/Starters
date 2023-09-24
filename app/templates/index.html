@@ -37,8 +37,16 @@
 
                 <!-- 投稿内容 -->
                 <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="いまどうしてる？">{{ session.get('saved_text', '') }}</textarea>
+                
+                <!-- ポストアイコン -->
+                <div id="post-icon">
+                    <img class="posticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="posticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="posticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
+                
+                <!-- 送信ボタン -->
                 <div id="button">
-                    <!-- 送信ボタン -->
                     <input id="postbutton" type="submit" value="ポストする">
                 </div>
             </form>
@@ -46,22 +54,50 @@
         <div id="timeline">
             {% if isCompleted == True  %}
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">{{postText}}</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">{{postText}}</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
 
             {% endif %}
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">今日もいい天気ですね</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/icon/useicon2.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">今日もいい天気ですね</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
-                <p class="user-post-text">お腹すいた</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/icon/useicon1.JPG" alt="ユーザーアイコン">
+                    <p class="post-user-text">お腹すいた</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
             <div class="userpost">
-                <img class="user-post-icon" src="static/icon/natsume.png" alt="ユーザーアイコン">
-                <p class="user-post-text">月が綺麗ですね</p>
+                <div class="postuser">
+                    <img class="post-user-icon" src="static/icon/natsume.png" alt="ユーザーアイコン">
+                    <p class="post-user-text">月が綺麗ですね</p>
+                </div>
+                <div id="user-post-icon">
+                    <img class="userposticon" src="static/icon/comment.png" alt="コメントアイコン">
+                    <img class="userposticon" src="static/icon/repost.png" alt="リポストアイコン">
+                    <img class="userposticon" src="static/icon/like.png" alt="ライクアイコン">
+                </div>
             </div>
         </div>
     </div>
@@ -71,8 +107,8 @@
             <h2 id="trendtitle">いまどうしてる？</h2>
             <div id="trends">
                 <div class="trend">
-                    <p>エンターテインメントのトレンド</p>
-                    <h4>東京ゲームショウ2023</h4>
+                    <p>日本のトレンド</p>
+                    <h4>Softbank World</h4>
                     <p>3,150posts</p>
                 </div>
                 <div class="trend">
@@ -81,9 +117,9 @@
                     <p>3,150posts</p>
                 </div>
                 <div class="trend">
-                    <p>テクノロジーのトレンド</p>
-                    <h4>Softbank Tech Night Hackathon</h4>
-                    <p>3,150posts</p>
+                    <p>生き物のトレンド</p>
+                    <h4>お父さん</h4>
+                    <p>1,111posts</p>
                 </div>
             </div>
         </div>
