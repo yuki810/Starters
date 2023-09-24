@@ -80,7 +80,6 @@ def checktweet():
       session['recommend'] = recommend
       print(recommend)
       #  a = "それで本当にいいのかな？？"
-      
       return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend)
     else:
        isCompleted = True
