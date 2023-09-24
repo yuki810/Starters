@@ -33,7 +33,7 @@
         <div id="post">
             <form action="/check" method="POST">
                 <!-- ユーザーアイコン -->
-                <img id="user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                <img id="user-icon" src="static/usericon/useicon.JPG" alt="ユーザーアイコン">
 
                 <!-- 投稿内容 -->
                 <textarea id="postinput" name="text_area" rows="4" cols="50" placeholder="いまどうしてる？">{{ session.get('saved_text', '') }}</textarea>
@@ -55,7 +55,7 @@
             {% if isCompleted == True  %}
             <div class="userpost">
                 <div class="postuser">
-                    <img class="post-user-icon" src="static/icon/useicon.JPG" alt="ユーザーアイコン">
+                    <img class="post-user-icon" src="static/usericon/useicon.JPG" alt="ユーザーアイコン">
                     <p class="post-user-text">{{postText}}</p>
                 </div>
                 <div id="user-post-icon">
@@ -68,7 +68,7 @@
             {% endif %}
             <div class="userpost">
                 <div class="postuser">
-                    <img class="post-user-icon" src="static/icon/useicon2.JPG" alt="ユーザーアイコン">
+                    <img class="post-user-icon" src="static/usericon/useicon2.JPG" alt="ユーザーアイコン">
                     <p class="post-user-text">今日もいい天気ですね</p>
                 </div>
                 <div id="user-post-icon">
@@ -79,7 +79,7 @@
             </div>
             <div class="userpost">
                 <div class="postuser">
-                    <img class="post-user-icon" src="static/icon/useicon1.JPG" alt="ユーザーアイコン">
+                    <img class="post-user-icon" src="static/usericon/useicon1.JPG" alt="ユーザーアイコン">
                     <p class="post-user-text">お腹すいた</p>
                 </div>
                 <div id="user-post-icon">
@@ -90,7 +90,7 @@
             </div>
             <div class="userpost">
                 <div class="postuser">
-                    <img class="post-user-icon" src="static/icon/natsume.png" alt="ユーザーアイコン">
+                    <img class="post-user-icon" src="static/usericon/natsume.png" alt="ユーザーアイコン">
                     <p class="post-user-text">月が綺麗ですね</p>
                 </div>
                 <div id="user-post-icon">
@@ -124,5 +124,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>
