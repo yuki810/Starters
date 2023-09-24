@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from codes import code1
+import random
 # from app.code.code import checkMessage
 # from code.code import 
 import openai
@@ -72,6 +73,9 @@ def checktweet():
     session["saved_text"] = text
     
     if isOK == "TRUE":
+      number = random.randrange(2)+1
+      ikemen_src = "static/person/ikemen{number}.jpg"
+      print(ikemen_src)
       # a = alertMessage(text)
       a = code1.study_main(text)
       recommend = recommendMessage(text)
@@ -81,17 +85,19 @@ def checktweet():
       print(recommend)
       #  a = "それで本当にいいのかな？？"
       
-      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend)
+      return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend, link = ikemen_src)
     else:
        isCompleted = True
        session['isCompleted'] = True
        session["postText"] = text
+       session["saved_text"] = ""
        return redirect("/")
     
 @view.route('/agree', methods=['POST'])
 def agree():
     session['isCompleted'] = True
     session["postText"] = session.get('recommend', "")
+    session["saved_text"] = ""
     return redirect("/")
     
    

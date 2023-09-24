@@ -23,12 +23,10 @@ def study_main(prompt):
   system_prompt = get_system_prompt_from_training_data(TRAINING_FILE_PATH)
 
   response = openai.ChatCompletion.create(
-      model=name,
+      # model=name,
+      model="gpt-4",
+      temperature=0.1,
       messages=[
-          {
-              'role': "system",
-              "content": system_prompt
-          },
           {
               'role': "system",
               "content": "あなたは日本で活躍するカリスマ芸能人、ローランドです．"
