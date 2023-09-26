@@ -19,8 +19,9 @@ def get_system_prompt_from_training_data(file_path):
 TRAINING_FILE_PATH = "app/codes/content/train.jsonl"#@param {type:"string"}
 
 def study_main(prompt):
-  name = "ft:gpt-3.5-turbo-0613:personal::829BctLW"
+  name = "ft:gpt-3.5-turbo-0613:personal::82CMhBQk"
   system_prompt = get_system_prompt_from_training_data(TRAINING_FILE_PATH)
+
 
   response = openai.ChatCompletion.create(
       model=name,
@@ -39,12 +40,12 @@ def study_main(prompt):
           },
         {
               'role': "system",
-              "content": "文章には悪口という言葉を入れないで、20文字程度でお願いします．"
+              "content": "文章には悪口という言葉を入れないでください．20文字程度でお願いします．"
           },
-          {
-              'role': "user",
-              "content": prompt
-          }
+        #   {
+        #       'role': "user",
+        #       "content": prompt
+        #   }
       ]
   )
   return response.choices[0]['message']['content']
