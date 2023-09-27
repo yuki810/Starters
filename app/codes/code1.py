@@ -16,12 +16,15 @@ def get_system_prompt_from_training_data(file_path):
             assert data['messages'][0]['role'] == 'system'
             return data['messages'][0]['content']
 
-TRAINING_FILE_PATH = "app/codes/content/train.jsonl"#@param {type:"string"}
-
 def study_main(prompt):
-  name = "ft:gpt-3.5-turbo-0613:personal::82CMhBQk"
+  MODELS = [
+     {"name": "ft:gpt-3.5-turbo-0613:personal::82CMhBQk", "path": "app/codes/content/trainRoland.jsonl"},
+     {"name": "ft:gpt-3.5-turbo-0613:personal::83RpIQuh", "path": "app/codes/content/trainAnmika.jsonl"},
+  ]
+  selected_model = random.choice(MODELS)
+  name = selected_model["name"]
+  TRAINING_FILE_PATH = selected_model["path"]
   system_prompt = get_system_prompt_from_training_data(TRAINING_FILE_PATH)
-
 
   response = openai.ChatCompletion.create(
       model=name,
@@ -29,10 +32,6 @@ def study_main(prompt):
           {
               'role': "system",
               "content": system_prompt
-          },
-          {
-              'role': "system",
-              "content": "あなたは日本で活躍するカリスマ芸能人、ローランドです．"
           },
           {
               'role': "system",

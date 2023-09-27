@@ -1,5 +1,5 @@
 from flask import Flask
-# from app.views import index
+#from app.views import index
 from views import index
 
 app = Flask(__name__)
