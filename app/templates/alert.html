@@ -128,13 +128,13 @@
     <!-- 警告メッセージ用 -->
     <div class="overlay" id="overlay">
         <div class = "overlay_message" id = "overlay_message">
-            <audio autoplay src="static/music/piano.mp3"></audio>
             <div class="overlay" id="alert">
                 <p>{{alert}}</p>
             </div>
             <div class="overlay" id="advice">
                 <p class="narration">こんな言い方はどうかな？：</p>
                 <p id="recommend">『{{recommend}}』</p>
+                <audio id="voice" controls src="static/sound/speech.mp3"></audio>
                 <br>
                 <br>
                 <p class="narration">あなたはどうする？？</p>
