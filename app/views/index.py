@@ -4,15 +4,26 @@ import base64
 import time
 # from app.code.code import checkMessage
 # from code.code import 
-import openai
 import random
 import json
 
+# CHatGPT用
+import openai
+
 openai.api_key = ''
 isCompleted = False
-
 with open("app/static/apikey.txt") as f:
    openai.api_key = f.read()
+
+# 音声生成用
+import boto3
+import playsound
+import speech_recognition as sr
+import openai
+from contextlib import closing
+
+r = sr.Recognizer()
+polly = boto3.client("polly")
 
 def craeteIkemen(text):
    
@@ -69,8 +80,6 @@ def recommendMessage(text):
 
   a = response.choices[0].message['content'].strip()
   return a
-   
-
 
 view = Blueprint('index', __name__, url_prefix='/')
 @view.route('/', methods=['GET'])
@@ -98,8 +107,10 @@ def checktweet():
     variable_value = session.get('isCompleted', False)
     postText = session.get('postText', "")
     session["saved_text"] = text
-    
+
     if isOK:
+
+      # 画像生成
       type = session.get("select_type","select")
       if type == "select":
         number = random.randrange(3)+1
@@ -107,17 +118,22 @@ def checktweet():
       else:
         craeteIkemen(text)
         link = "static/ikemen.png"
+
+      # alert文生成
       # a = alertMessage(text)
       a = code1.study_main(text)
+
+      # recommend文生成
       time5 = time.time()
       recommend = recommendMessage(text)
       time6 = time.time()
       print(f"おすすめ生成：{time6-time5}")
-    #   recommend = "大好き"
-    #   a = "そんな言い方良くないよ"
       session['recommend'] = recommend
       print(recommend)
-      #  a = "それで本当にいいのかな？？"
+
+      # recommend文読み上げ
+      text_to_voice(recommend)
+
       return render_template('alert.html', alert = a, postText=postText, isCompleted=variable_value, inputText = text, recommend = recommend, link=link)
     else:
        isCompleted = True
@@ -139,3 +155,20 @@ def disagree():
     session['isCompleted'] = False
     session["saved_text"] = session.get('saved_text', "")
     return redirect("/")
+
+
+def text_to_voice(text):
+    mp3_path = "app/static/sound/speech.mp3"
+    response = polly.synthesize_speech(
+        Engine='neural',
+        Text = text,
+        OutputFormat = "mp3",
+        VoiceId = "Takumi"
+    )
+
+    audio_stream = response.get("AudioStream")
+    if audio_stream :
+        with closing(audio_stream) as stream:
+            with open(mp3_path, "wb") as file:
+                file.write(stream.read())
+    # playsound.playsound(mp3_path)
