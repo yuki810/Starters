@@ -132,18 +132,27 @@
                 <p>{{alert}}</p>
             </div>
             <div class="overlay" id="advice">
+                <audio id="voice" controls src="static/sound/speech.mp3"></audio>
                 <p class="narration">こんな言い方はどうかな？：</p>
                 <p id="recommend">『{{recommend}}』</p>
-                <audio id="voice" controls src="static/sound/speech.mp3"></audio>
                 <br>
                 <br>
                 <p class="narration">あなたはどうする？？</p>
-                <form action="/agree" method="POST">
-                    <input class="postbutton" id="alertpostbutton" type="submit" value="▶︎ イケメンに従って変更した内容を、ポストする" class="alertbutton">
-                </form>
-                <form action="/disagree" method="POST">
-                    <input class="postbutton" id="undobutton" type="submit" value="▶︎ イケメンになんて、靡かないんだから！" class="alertbutton">
-                </form>
+                {% if select_mode == "anmika" %}
+                    <form action="/agree" method="POST">
+                        <input class="postbutton" id="alertpostbutton" type="submit" value="▶︎ 美女の言う通り変更した内容を、ポストする" class="alertbutton">
+                    </form>
+                    <form action="/disagree" method="POST">
+                        <input class="postbutton" id="undobutton" type="submit" value="▶︎ 美女の言うことでも聞けないな...！" class="alertbutton">
+                    </form>
+                {% else %}
+                    <form action="/agree" method="POST">
+                        <input class="postbutton" id="alertpostbutton" type="submit" value="▶︎ イケメンに従って変更した内容を、ポストする" class="alertbutton">
+                    </form>
+                    <form action="/disagree" method="POST">
+                        <input class="postbutton" id="undobutton" type="submit" value="▶︎ イケメンになんて、靡かないんだから！" class="alertbutton">
+                    </form>
+                {% endif %}
             </div>
         </div>
         <img class = "ikemen" src={{link}} alt="ユーザーアイコン">
