@@ -18,22 +18,29 @@ def get_system_prompt_from_training_data(file_path):
 
 TRAINING_FILE_PATH = "app/codes/content/train.jsonl"#@param {type:"string"}
 
-def study_main(prompt):
-  name = "ft:gpt-3.5-turbo-0613:personal::82CMhBQk"
-  system_prompt = get_system_prompt_from_training_data(TRAINING_FILE_PATH)
-
+def study_main(prompt, model_name):
+  model =  {
+    "roland":"ft:gpt-3.5-turbo-0613:personal::82CMhBQk",
+    "anmika":"ft:gpt-3.5-turbo-0613:personal::83RpIQuh"
+  }
+  json = {
+    "roland":"app/codes/content/train_roland.jsonl",
+    "anmika":"app/codes/content/train_anmika.jsonl"
+  }
+  
+  system_prompt = get_system_prompt_from_training_data(json[model_name])
 
   response = openai.ChatCompletion.create(
-      model=name,
+      model=model[model_name],
       messages=[
           {
               'role': "system",
               "content": system_prompt
           },
-          {
-              'role': "system",
-              "content": "あなたは日本で活躍するカリスマ芸能人、ローランドです．"
-          },
+        #   {
+        #       'role': "system",
+        #       "content": "あなたは日本で活躍するカリスマ芸能人、ローランドです．"
+        #   },
           {
               'role': "system",
               "content": "人の悪口を言ってしまう人にユーモアを交えながら忠告してください."

@@ -3,6 +3,8 @@ from flask import Flask
 from views import index
 
 app = Flask(__name__)
+app.config['SESSION_TYPE'] = 'null'
+app.config['SESSION_PERMANENT'] = False
 app.register_blueprint(index.view)
 
 app.secret_key = 'your_secret_key_here'
